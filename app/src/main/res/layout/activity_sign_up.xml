@@ -41,6 +41,12 @@
             android:autofillHints="emailAddress" />
         <EditText
             style="@style/Input"
+            android:id="@+id/input_user_username"
+            android:hint="@string/br_input_user_username"
+            android:inputType="text"
+            android:autofillHints="text" />
+        <EditText
+            style="@style/Input"
             android:id="@+id/input_user_password"
             android:hint="@string/br_input_user_password"
             android:inputType="textPassword"
@@ -53,8 +59,8 @@
             android:autofillHints="password" />
 
         <Button
-            style="@style/Button"
             android:id="@+id/button_user_signup"
+            style="@style/Button"
             android:text="@string/br_button_user_signup" />
 
     </LinearLayout>

@@ -1,9 +1,13 @@
 <resources>
     <string name="app_name">Libri</string>
-    <string name="br_user_signup_title">Cadastro</string>
+    <string name="br_user_signup_title">Cadastro de usuário</string>
+    <string name="br_user_signup_message">Você realmente deseja se cadastrar?</string>
+    <string name="br_user_signup_confirm_positive">Cadastrar</string>
+    <string name="br_user_signup_confirm_negative">Cancelar</string>
     <string name="br_input_user_name">Nome</string>
     <string name="br_input_user_surname">Sobrenome</string>
     <string name="br_input_user_mail">Email</string>
+    <string name="br_input_user_username">Usuário</string>
     <string name="br_input_user_password">Senha</string>
     <string name="br_input_user_confirmpassword">Confirmação de Senha</string>
     <string name="br_button_user_signup">Cadastrar Usuário</string>

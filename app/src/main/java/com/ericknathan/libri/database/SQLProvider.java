@@ -25,7 +25,8 @@ public class SQLProvider extends SQLiteOpenHelper {
                 "id_user INTEGER PRIMARY KEY," +
                 "name TEXT," +
                 "surname TEXT," +
-                "email TEXT," +
+                "email TEXT UNIQUE," +
+                "username TEXT UNIQUE," +
                 "password TEXT," +
                 "created_at DATETIME DEFAULT CURRENT_TIMESTAMP," +
                 "updated_at DATETIME DEFAULT CURRENT_TIMESTAMP" +
@@ -39,28 +40,30 @@ public class SQLProvider extends SQLiteOpenHelper {
 
     }
 
-    public boolean addUser(String name, String surname, String email, String password, String created_at) {
-        SQLiteDatabase database = this.getWritableDatabase();
+    public boolean addUser(String name, String surname, String email, String username, String password) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         
         try {
+            sqLiteDatabase.beginTransaction();
+
             ContentValues values = new ContentValues();
 
             values.put("name", name);
             values.put("surname", surname);
             values.put("email", email);
+            values.put("username", username);
             values.put("password", password);
-            values.put("created_at", created_at);
 
-            database.insertOrThrow("tbl_user", null, values);
-            database.setTransactionSuccessful();
+            sqLiteDatabase.insertOrThrow("tbl_user", null, values);
+            sqLiteDatabase.setTransactionSuccessful();
 
             return true;
-        } catch(Exception e) {
-            Log.d("SQLITE ERROR [addUser]", e.getMessage());
+        } catch(Exception error) {
+            Log.d("SQLITE ERROR [addUser]", error.getMessage());
             return false;
         } finally {
-            if(database.isOpen()) {
-                database.endTransaction();
+            if(sqLiteDatabase.isOpen()) {
+                sqLiteDatabase.endTransaction();
             }
         }
     }
