@@ -22,7 +22,7 @@ public class SQLProvider extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(
             "CREATE TABLE IF NOT EXISTS tbl_user (" +
-                "id_user INTEGER PRIMARY KEY," +
+                "id_user INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "name TEXT," +
                 "surname TEXT," +
                 "email TEXT UNIQUE," +
@@ -32,6 +32,21 @@ public class SQLProvider extends SQLiteOpenHelper {
                 "updated_at DATETIME DEFAULT CURRENT_TIMESTAMP" +
             ")"
         );
+
+        sqLiteDatabase.execSQL(
+            "CREATE TABLE IF NOT EXISTS tbl_book (" +
+                "id_book INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "id_user INTEGER," +
+                "title TEXT," +
+                "author TEXT," +
+                "description TEXT," +
+                "photo TEXT," +
+                "created_at DATETIME DEFAULT CURRENT_TIMESTAMP," +
+                "updated_at DATETIME DEFAULT CURRENT_TIMESTAMP," +
+                "FOREIGN KEY (id_user) REFERENCES tbl_user(id_user)" +
+            ")"
+        );
+
         Log.d("SQLITE", "BANCO DE DADOS CRIADO! " + DB_VERSION);
     }
 
@@ -60,6 +75,34 @@ public class SQLProvider extends SQLiteOpenHelper {
             return true;
         } catch(Exception error) {
             Log.d("SQLITE ERROR [addUser]", error.getMessage());
+            return false;
+        } finally {
+            if(sqLiteDatabase.isOpen()) {
+                sqLiteDatabase.endTransaction();
+            }
+        }
+    }
+
+    public boolean registerBook(int id_user, String title, String author, String description, String photo) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+
+        try {
+            sqLiteDatabase.beginTransaction();
+
+            ContentValues values = new ContentValues();
+
+            values.put("id_user", id_user);
+            values.put("title", title);
+            values.put("author", author);
+            values.put("description", description);
+            values.put("photo", photo);
+
+            sqLiteDatabase.insertOrThrow("tbl_book", null, values);
+            sqLiteDatabase.setTransactionSuccessful();
+
+            return true;
+        } catch(Exception error) {
+            Log.d("SQLITE ERROR [addBook]", error.getMessage());
             return false;
         } finally {
             if(sqLiteDatabase.isOpen()) {

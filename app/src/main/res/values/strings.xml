@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">Libri</string>
+
     <string name="br_user_signup_title">Cadastro de usuário</string>
     <string name="br_user_signup_message">Você realmente deseja se cadastrar?</string>
-    <string name="br_user_signup_confirm_positive">Cadastrar</string>
-    <string name="br_user_signup_confirm_negative">Cancelar</string>
+    <string name="br_user_signup_message_success">Usuário cadastrado com sucesso!</string>
+    <string name="br_user_signup_message_error">Ocorreu um erro ao realizar o cadastro de usuário!</string>
     <string name="br_input_user_name">Nome</string>
     <string name="br_input_user_surname">Sobrenome</string>
     <string name="br_input_user_mail">Email</string>
@@ -11,4 +12,19 @@
     <string name="br_input_user_password">Senha</string>
     <string name="br_input_user_confirmpassword">Confirmação de Senha</string>
     <string name="br_button_user_signup">Cadastrar Usuário</string>
+
+    <string name="br_book_register_title">Cadastro de livro</string>
+    <string name="br_book_register_message">Você realmente deseja cadastrar esse livro?</string>
+    <string name="br_book_register_message_success">Livro cadastrado com sucesso!</string>
+    <string name="br_book_register_message_error">Ocorreu um erro ao realizar o cadastro do livro!</string>
+    <string name="br_input_book_title">Título</string>
+    <string name="br_input_book_author">Autor</string>
+    <string name="br_input_book_description">Descrição</string>
+    <string name="br_input_book_photo">Foto</string>
+    <string name="br_button_book_register">Cadastrar Livro</string>
+
+    <string name="br_confirm_positive">Cadastrar</string>
+    <string name="br_confirm_negative">Cancelar</string>
+
+
 </resources>

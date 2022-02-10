@@ -3,7 +3,6 @@ package com.ericknathan.libri;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -59,7 +58,7 @@ public class SignUpActivity extends AppCompatActivity {
                     .setTitle(getString(R.string.br_user_signup_title))
                     .setMessage(getString(R.string.br_user_signup_message))
                     .setPositiveButton(
-                        getString(R.string.br_user_signup_confirm_positive),
+                        getString(R.string.br_confirm_positive),
                         (dialog, which) -> {
                             boolean registeredUser = SQLProvider.getInstance(this).addUser(
                                     nameInputValue,
@@ -70,16 +69,16 @@ public class SignUpActivity extends AppCompatActivity {
                             );
 
                             if(registeredUser) {
-                                Toast.makeText(this, "Usuário cadastrado com sucesso!", Toast.LENGTH_LONG).show();
+                                Toast.makeText(this, getString(R.string.br_user_signup_message_success), Toast.LENGTH_LONG).show();
                             } else {
-                                Toast.makeText(this, "Ocorreu um erro ao realizar o cadastro!", Toast.LENGTH_LONG).show();
+                                Toast.makeText(this, getString(R.string.br_user_signup_message_error), Toast.LENGTH_LONG).show();
                             }
 
                             dialog.cancel();
                         }
                     )
                     .setNegativeButton(
-                        getString(R.string.br_user_signup_confirm_negative),
+                        getString(R.string.br_confirm_negative),
                         (dialog, which) -> {
                             dialog.cancel();
                         }
