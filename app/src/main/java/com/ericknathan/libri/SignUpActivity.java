@@ -35,6 +35,13 @@ public class SignUpActivity extends AppCompatActivity {
         passwordConfirmInput = findViewById(R.id.input_user_confirmpassword);
         signUpUserButton = findViewById(R.id.button_user_signup);
 
+        nameInput.setText("Erick");
+        surnameInput.setText("Nathan");
+        usernameInput.setText("ericknathan");
+        emailInput.setText("erick.capito@hotmail.com");
+        passwordInput.setText("12345");
+        passwordConfirmInput.setText("12345");
+
         signUpUserButton.setOnClickListener( view -> {
 
             String nameInputValue = nameInput.getText().toString();

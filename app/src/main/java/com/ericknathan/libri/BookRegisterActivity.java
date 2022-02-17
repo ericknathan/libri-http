@@ -29,6 +29,11 @@ public class BookRegisterActivity extends AppCompatActivity {
         photoInput = findViewById(R.id.input_book_photo);
         registerButton = findViewById(R.id.button_book_register);
 
+        titleInput.setText("Diário de um banana");
+        authorInput.setText("Jeff Kiney");
+        descriptionInput.setText("Isso é um exemplo de descrição");
+        photoInput.setText("https://localhost:3333/foto.png");
+
         registerButton.setOnClickListener( view -> {
 
             String titleInputValue = titleInput.getText().toString();

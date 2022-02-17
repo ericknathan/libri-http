@@ -2,6 +2,7 @@ package com.ericknathan.libri.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -109,6 +110,33 @@ public class SQLProvider extends SQLiteOpenHelper {
                 sqLiteDatabase.endTransaction();
             }
         }
+    }
+
+    public int login(String username, String password) {
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery(
+                "SELECT * FROM tbl_user WHERE username = ? AND password = ?",
+                new String[]{username, password}
+        );
+
+        int user_id = 0;
+        try {
+            if(cursor.moveToFirst()) {
+                user_id = cursor.getInt(cursor.getColumnIndex("id_user"));
+                return user_id;
+            }
+
+            return user_id;
+        }
+        catch(Exception exception) {
+            Log.d("SQLITE ERROR - ", exception.getMessage());
+        }
+        finally {
+            if(cursor != null && !cursor.isClosed()) {
+                cursor.close();
+            }
+        }
+        return user_id;
     }
 
     public static SQLProvider getInstance(Context context) {

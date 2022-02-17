@@ -26,5 +26,9 @@
     <string name="br_confirm_positive">Cadastrar</string>
     <string name="br_confirm_negative">Cancelar</string>
 
+    <string name="br_user_signin_title">Login</string>
+    <string name="br_button_user_signin">Autenticar</string>
+
+
 
 </resources>
