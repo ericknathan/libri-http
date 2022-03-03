@@ -3,6 +3,7 @@ package com.ericknathan.libri;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,7 +21,6 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText usernameInput;
     private EditText passwordInput;
     private EditText passwordConfirmInput;
-    private Button signUpUserButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,7 @@ public class SignUpActivity extends AppCompatActivity {
         emailInput = findViewById(R.id.input_user_mail);
         passwordInput = findViewById(R.id.input_user_password);
         passwordConfirmInput = findViewById(R.id.input_user_confirmpassword);
-        signUpUserButton = findViewById(R.id.button_user_signup);
+        Button signUpUserButton = findViewById(R.id.button_user_signup);
 
         nameInput.setText("Erick");
         surnameInput.setText("Nathan");
@@ -42,7 +42,7 @@ public class SignUpActivity extends AppCompatActivity {
         passwordInput.setText("12345");
         passwordConfirmInput.setText("12345");
 
-        signUpUserButton.setOnClickListener( view -> {
+        signUpUserButton.setOnClickListener(view -> {
 
             String nameInputValue = nameInput.getText().toString();
             String surnameInputValue = surnameInput.getText().toString();
@@ -76,6 +76,10 @@ public class SignUpActivity extends AppCompatActivity {
                             );
 
                             if(registeredUser) {
+                                startActivity(new Intent(
+                                        SignUpActivity.this,
+                                        SignInActivity.class
+                                ));
                                 Toast.makeText(this, getString(R.string.br_user_signup_message_success), Toast.LENGTH_LONG).show();
                             } else {
                                 Toast.makeText(this, getString(R.string.br_user_signup_message_error), Toast.LENGTH_LONG).show();

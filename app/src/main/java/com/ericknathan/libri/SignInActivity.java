@@ -16,8 +16,6 @@ public class SignInActivity extends AppCompatActivity {
 
     private EditText usernameInput;
     private EditText passwordInput;
-    private Button signInUserButton;
-    private Button signUpUserButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +24,8 @@ public class SignInActivity extends AppCompatActivity {
 
         usernameInput = findViewById(R.id.input_user_username);
         passwordInput = findViewById(R.id.input_user_password);
-        signUpUserButton = findViewById(R.id.button_user_signup);
-        signInUserButton = findViewById(R.id.button_user_signin);
+        Button signUpUserButton = findViewById(R.id.button_user_signup);
+        Button signInUserButton = findViewById(R.id.button_user_signin);
 
         usernameInput.setText("ericknathan");
         passwordInput.setText("12345");

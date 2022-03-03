@@ -29,6 +29,13 @@
     <string name="br_user_signin_title">Login</string>
     <string name="br_button_user_signin">Autenticar</string>
 
+    <string name="br_menu_book_register">Cadastrar Livro</string>
+    <string name="br_menu_books_feed">Feed de Livros</string>
+    <string name="br_menu_logout">Sair</string>
+    <string name="title_activity_teste">TesteActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 
 
 </resources>

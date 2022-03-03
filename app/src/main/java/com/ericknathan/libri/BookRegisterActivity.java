@@ -4,19 +4,22 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.ericknathan.libri.database.SQLProvider;
+import com.ericknathan.libri.helpers.MenuHelper;
 
 public class BookRegisterActivity extends AppCompatActivity {
+    final MenuHelper menuHelper = new MenuHelper(this);
 
     private EditText titleInput;
     private EditText authorInput;
     private EditText descriptionInput;
     private EditText photoInput;
-    private Button registerButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,14 +30,14 @@ public class BookRegisterActivity extends AppCompatActivity {
         authorInput = findViewById(R.id.input_book_author);
         descriptionInput = findViewById(R.id.input_book_description);
         photoInput = findViewById(R.id.input_book_photo);
-        registerButton = findViewById(R.id.button_book_register);
+        Button registerButton = findViewById(R.id.button_book_register);
 
         titleInput.setText("Diário de um banana");
         authorInput.setText("Jeff Kiney");
         descriptionInput.setText("Isso é um exemplo de descrição");
         photoInput.setText("https://localhost:3333/foto.png");
 
-        registerButton.setOnClickListener( view -> {
+        registerButton.setOnClickListener(view -> {
 
             String titleInputValue = titleInput.getText().toString();
             String authorInputValue = authorInput.getText().toString();
@@ -82,6 +85,14 @@ public class BookRegisterActivity extends AppCompatActivity {
                 dialogBuilder.show();
             }
         });
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return super.onCreateOptionsMenu(menuHelper.createOptionsMenu(menu));
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(menuHelper.handleMenuOptions(item));
     }
 
     private boolean validate(String title, String author, String description, String photo) {

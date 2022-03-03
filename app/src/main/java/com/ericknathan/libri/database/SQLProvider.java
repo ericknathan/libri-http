@@ -1,5 +1,6 @@
 package com.ericknathan.libri.database;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -8,6 +9,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
+
+import com.ericknathan.libri.models.Book;
+import com.ericknathan.libri.models.Item;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SQLProvider extends SQLiteOpenHelper {
 
@@ -112,6 +119,7 @@ public class SQLProvider extends SQLiteOpenHelper {
         }
     }
 
+    @SuppressLint("Range")
     public int login(String username, String password) {
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
         Cursor cursor = sqLiteDatabase.rawQuery(
@@ -137,6 +145,40 @@ public class SQLProvider extends SQLiteOpenHelper {
             }
         }
         return user_id;
+    }
+
+    @SuppressLint("Range")
+    public List<Item> listBooks() {
+        List<Item> items = new ArrayList<>();
+
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+
+        Cursor cursor = sqLiteDatabase.rawQuery(
+                "SELECT * FROM tbl_book",
+                new String[]{}
+        );
+
+        try {
+            if(cursor.moveToFirst()) {
+                do {
+                    String bookTitle = cursor.getString(cursor.getColumnIndex("title"));
+                    String bookDescription = cursor.getString(cursor.getColumnIndex("description"));
+
+                    Book book = new Book(bookTitle, bookDescription);
+                    items.add(new Item(0, book));
+                } while(cursor.moveToNext());
+            }
+        }
+        catch(Exception exception) {
+            Log.d("SQLITE ERROR - ", exception.getMessage());
+        }
+        finally {
+            if(cursor != null && !cursor.isClosed()) {
+                cursor.close();
+            }
+        }
+
+        return items;
     }
 
     public static SQLProvider getInstance(Context context) {

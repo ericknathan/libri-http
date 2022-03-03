@@ -1,7 +1,7 @@
 package com.ericknathan.libri.helpers;
 
 public class LoginHelper {
-    private static int id_user;
+    private static Integer id_user;
 
     public static int getUserId() {
         return id_user;
@@ -9,5 +9,9 @@ public class LoginHelper {
 
     public static void setUserId(int user_id) {
         LoginHelper.id_user = user_id;
+    }
+
+    public static void setUserId() {
+        LoginHelper.id_user = null;
     }
 }
