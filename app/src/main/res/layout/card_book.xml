@@ -18,7 +18,7 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:textAlignment="center"
-                android:text="Diário de um banana"
+                android:text="Harry Potter e a Pedra Filosofal"
                 />
 
             <TextView

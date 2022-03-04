@@ -2,9 +2,9 @@ package com.ericknathan.libri.models;
 
 public class Item {
     private final int type;
-    private final Book object;
+    private final Object object;
 
-    public Item(int type, Book object) {
+    public Item(int type, Object object) {
         this.type = type;
         this.object = object;
     }
@@ -13,7 +13,7 @@ public class Item {
         return type;
     }
 
-    public Book getObject() {
+    public Object getObject() {
         return object;
     }
 }

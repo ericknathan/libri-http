@@ -50,7 +50,10 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull BookViewHolder holder, int position) {
-        holder.setBookData(books.get(position).getObject());
+        Item book = books.get(position);
+        if (book.getType() == 0) {
+            holder.setBookData((Book) book.getObject());
+        }
     }
 
     @Override

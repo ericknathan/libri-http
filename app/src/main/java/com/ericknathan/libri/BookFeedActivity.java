@@ -26,7 +26,6 @@ public class BookFeedActivity extends AppCompatActivity {
         List<Item> books = SQLProvider.getInstance(this).listBooks();
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview_book_list);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         BookAdapter adapter = new BookAdapter(books);
         recyclerView.setAdapter(adapter);
     }
