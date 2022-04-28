@@ -10,8 +10,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.ericknathan.libri.database.SQLProvider;
 import com.ericknathan.libri.helpers.MenuHelper;
+import com.ericknathan.libri.models.Book;
+import com.ericknathan.libri.models.User;
+import com.ericknathan.libri.remote.APIUtil;
+import com.ericknathan.libri.remote.RouterInterface;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class BookRegisterActivity extends AppCompatActivity {
     final MenuHelper menuHelper = new MenuHelper(this);
@@ -20,6 +27,8 @@ public class BookRegisterActivity extends AppCompatActivity {
     private EditText authorInput;
     private EditText descriptionInput;
     private EditText photoInput;
+
+    RouterInterface routerInterface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,19 +67,15 @@ public class BookRegisterActivity extends AppCompatActivity {
                         .setPositiveButton(
                                 getString(R.string.br_confirm_positive),
                                 (dialog, which) -> {
-                                    boolean registeredUser = SQLProvider.getInstance(this).registerBook(
-                                            1,
-                                            titleInputValue,
-                                            authorInputValue,
-                                            descriptionInputValue,
-                                            photoInputValue
-                                    );
+                                    Book book = new Book();
+                                    book.setTitle(titleInputValue);
+                                    book.setDescription(descriptionInputValue);
+                                    book.setImage(photoInputValue);
+                                    book.setAuthor(authorInputValue);
+                                    book.setUserId(1);
 
-                                    if(registeredUser) {
-                                        Toast.makeText(this, getString(R.string.br_book_register_message_success), Toast.LENGTH_LONG).show();
-                                    } else {
-                                        Toast.makeText(this, getString(R.string.br_book_register_message_error), Toast.LENGTH_LONG).show();
-                                    }
+                                    routerInterface = APIUtil.getUserInterface();
+                                    createBook(book);
 
                                     dialog.cancel();
                                 }
@@ -102,5 +107,20 @@ public class BookRegisterActivity extends AppCompatActivity {
         }
 
         return true;
+    }
+
+    public void createBook(Book book) {
+        Call<Book> call = routerInterface.addBook(book);
+        call.enqueue(new Callback<Book>() {
+            @Override
+            public void onResponse(Call<Book> call, Response<Book> response) {
+                Toast.makeText(BookRegisterActivity.this, "LIVRO INSERIDO COM SUCESSO!", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onFailure(Call<Book> call, Throwable t) {
+                Toast.makeText(BookRegisterActivity.this, "ERRO - " + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }

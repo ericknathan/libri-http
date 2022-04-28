@@ -163,8 +163,11 @@ public class SQLProvider extends SQLiteOpenHelper {
                 do {
                     String bookTitle = cursor.getString(cursor.getColumnIndex("title"));
                     String bookDescription = cursor.getString(cursor.getColumnIndex("description"));
+                    int userId = cursor.getInt(cursor.getColumnIndex("user_id"));
+                    String bookImage = cursor.getString(cursor.getColumnIndex("image"));
+                    String bookAuthor = cursor.getString(cursor.getColumnIndex("author"));
 
-                    Book book = new Book(bookTitle, bookDescription);
+                    Book book = new Book(userId, bookTitle, bookDescription, bookImage, bookAuthor);
                     items.add(new Item(0, book));
                 } while(cursor.moveToNext());
             }

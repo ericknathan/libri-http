@@ -3,15 +3,18 @@ package com.ericknathan.libri;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.ericknathan.libri.database.SQLProvider;
+import com.ericknathan.libri.models.User;
+import com.ericknathan.libri.remote.APIUtil;
+import com.ericknathan.libri.remote.RouterInterface;
 
-import java.util.Date;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -21,6 +24,8 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText usernameInput;
     private EditText passwordInput;
     private EditText passwordConfirmInput;
+
+    RouterInterface routerInterface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,23 +72,15 @@ public class SignUpActivity extends AppCompatActivity {
                     .setPositiveButton(
                         getString(R.string.br_confirm_positive),
                         (dialog, which) -> {
-                            boolean registeredUser = SQLProvider.getInstance(this).addUser(
-                                    nameInputValue,
-                                    surnameInputValue,
-                                    emailInputValue,
-                                    usernameInputValue,
-                                    passwordInputValue
-                            );
+                            User user = new User();
+                            user.setEmail(emailInputValue);
+                            user.setName(nameInputValue);
+                            user.setLogin(usernameInputValue);
+                            user.setSurname(surnameInputValue);
+                            user.setPassword(passwordInputValue);
 
-                            if(registeredUser) {
-                                startActivity(new Intent(
-                                        SignUpActivity.this,
-                                        SignInActivity.class
-                                ));
-                                Toast.makeText(this, getString(R.string.br_user_signup_message_success), Toast.LENGTH_LONG).show();
-                            } else {
-                                Toast.makeText(this, getString(R.string.br_user_signup_message_error), Toast.LENGTH_LONG).show();
-                            }
+                            routerInterface = APIUtil.getUserInterface();
+                            createUser(user);
 
                             dialog.cancel();
                         }
@@ -110,5 +107,20 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
         return true;
+    }
+
+    public void createUser(User user) {
+        Call<User> call = routerInterface.addUser(user);
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                Toast.makeText(SignUpActivity.this, "USUARIO INSERIDO COM SUCESSO!", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Toast.makeText(SignUpActivity.this, "ERRO - " + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }

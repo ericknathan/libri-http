@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="8dp"
@@ -10,17 +10,27 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="30dp">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/card_book_title"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textAlignment="center"
-                android:text="Harry Potter e a Pedra Filosofal"
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="150dp"
+                android:id="@+id/card_book_image"
+                android:background="@color/background"
                 />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:id="@+id/card_book_title"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:text="Harry Potter e a Pedra Filosofal"
+                android:ellipsize="end"
+                android:maxLines="2"
+                />
+
+            <!--
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -29,5 +39,6 @@
                 android:textSize="16sp"
                 android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Hendrerit eget aenean ipsum convallis laoreet ultricies. Fermentum, nibh quis in tellus amet arcu egestas massa. Amet et consectetur purus sagittis mauris, nunc est aliquam."
                 />
+                -->
         </LinearLayout>
 </androidx.cardview.widget.CardView>

@@ -31,7 +31,6 @@ public class SignInActivity extends AppCompatActivity {
         passwordInput.setText("12345");
 
         signInUserButton.setOnClickListener(view -> {
-            // TODO: Check if username and password is corrects
             String username = usernameInput.getText().toString();
             String password = passwordInput.getText().toString();
             int userId = SQLProvider.getInstance(this).login(username, password);
