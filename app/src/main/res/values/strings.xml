@@ -13,15 +13,22 @@
     <string name="br_input_user_confirmpassword">Confirmação de Senha</string>
     <string name="br_button_user_signup">Cadastrar Usuário</string>
 
-    <string name="br_book_register_title">Cadastro de livro</string>
-    <string name="br_book_register_message">Você realmente deseja cadastrar esse livro?</string>
-    <string name="br_book_register_message_success">Livro cadastrado com sucesso!</string>
-    <string name="br_book_register_message_error">Ocorreu um erro ao realizar o cadastro do livro!</string>
     <string name="br_input_book_title">Título</string>
     <string name="br_input_book_author">Autor</string>
     <string name="br_input_book_description">Descrição</string>
     <string name="br_input_book_photo">Foto</string>
+
+    <string name="br_book_register_title">Cadastro de livro</string>
+    <string name="br_book_register_message">Você realmente deseja cadastrar esse livro?</string>
+    <string name="br_book_register_message_success">Livro cadastrado com sucesso!</string>
+    <string name="br_book_register_message_error">Ocorreu um erro ao realizar o cadastro do livro!</string>
     <string name="br_button_book_register">Cadastrar Livro</string>
+
+    <string name="br_book_update_title">Edição de livro</string>
+    <string name="br_book_update_message">Você realmente deseja editar esse livro?</string>
+    <string name="br_book_update_message_success">Livro editado com sucesso!</string>
+    <string name="br_book_update_message_error">Ocorreu um erro ao realizar a edição do livro!</string>
+    <string name="br_button_book_update">Editar Livro</string>
 
     <string name="br_confirm_positive">Cadastrar</string>
     <string name="br_confirm_negative">Cancelar</string>

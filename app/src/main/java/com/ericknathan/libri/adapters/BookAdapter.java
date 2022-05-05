@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ericknathan.libri.BookFeedActivity;
 import com.ericknathan.libri.R;
+import com.ericknathan.libri.UpdateBookActivity;
 import com.ericknathan.libri.models.Book;
 import com.ericknathan.libri.models.Item;
 import com.ericknathan.libri.remote.APIUtil;
@@ -42,6 +44,8 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         private int bookId;
         private final TextView textBookTitle;
         private final ImageView imageViewBookCape;
+        private final Button updateBookButton;
+        private final Button deleteBookButton;
 
         public BookViewHolder(@NonNull View itemView, Context context) {
             super(itemView);
@@ -49,8 +53,16 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
             textBookTitle = itemView.findViewById(R.id.card_book_title);
             imageViewBookCape = itemView.findViewById(R.id.card_book_image);
 
-            itemView.setOnClickListener(view -> {
+            updateBookButton = itemView.findViewById(R.id.button_book_update);
+            deleteBookButton = itemView.findViewById(R.id.button_book_delete);
 
+            updateBookButton.setOnClickListener(view -> {
+                Intent updateBookActivityIntent = new Intent(context, UpdateBookActivity.class);
+                updateBookActivityIntent.putExtra("book_id", bookId);
+                context.startActivity(updateBookActivityIntent);
+            });
+
+            deleteBookButton.setOnClickListener(view -> {
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(context)
                         .setMessage("Escolha a ação que deseja executar")
                         .setPositiveButton("Excluir", (dialog, witch) -> {

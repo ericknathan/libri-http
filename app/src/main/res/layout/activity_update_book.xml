@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UpdateBookActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        tools:context="activity_book_register"
+        style="@style/SpacedContainer"
+        >
+
+        <TextView
+            style="@style/TextTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/br_book_update_title" />
+
+        <EditText
+            style="@style/Input"
+            android:id="@+id/input_book_title"
+            android:hint="@string/br_input_book_title"
+            android:inputType="text" />
+
+        <EditText
+            style="@style/Input"
+            android:id="@+id/input_book_author"
+            android:hint="@string/br_input_book_author"
+            android:inputType="text" />
+
+        <EditText
+            style="@style/Input"
+            android:id="@+id/input_book_description"
+            android:hint="@string/br_input_book_description"
+            android:inputType="text" />
+
+        <EditText
+            style="@style/Input"
+            android:id="@+id/input_book_photo"
+            android:hint="@string/br_input_book_photo"
+            android:inputType="text" />
+
+        <Button
+            android:id="@+id/button_book_update"
+            style="@style/Button"
+            android:text="@string/br_button_book_update" />
+
+    </LinearLayout>
+</ScrollView>

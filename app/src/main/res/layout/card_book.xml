@@ -11,6 +11,31 @@
             android:orientation="vertical"
             android:padding="30dp">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <Button
+                    android:id="@+id/button_book_update"
+                    android:layout_width="45dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:drawableRight="@drawable/ic_baseline_edit_24"
+                    android:paddingRight="10dp"
+                    android:layout_marginRight="10dp"
+                    />
+
+                <Button
+                    android:id="@+id/button_book_delete"
+                    android:layout_width="45dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/red"
+                    android:drawableRight="@drawable/ic_baseline_delete_24"
+                    android:paddingRight="10dp"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="150dp"
